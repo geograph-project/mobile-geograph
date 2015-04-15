@@ -13,7 +13,7 @@ if (!empty($_GET['id'])) {
 			$row = $decoded->rows[0];
 			
 			
-			$full_link = "http://www.geograph.org.uk/photo/$id?redir=false";
+			$full_link = "http://www.geograph.org.uk/photo/$id?mobile=0";
 		} else {
 			 $error = "unable to load image - please try later or try <a href=\"http://www.geograph.org.uk/photo/$id\">http://www.geograph.org.uk/photo/$id</a>"; 
 			 $id = 0;
@@ -153,7 +153,7 @@ licensed for <a href="/reuse.php?id=<? echo $id; ?>">reuse</a> under this <a rel
 </table>
 
 <hr>
-<p align="center">View full page at <a href="http://www.geograph.org.uk/photo/<? echo $id; ?>?redir=false">geograph.org.uk/photo/<? echo $id; ?></a></p>
+<p align="center">View full page at <a href="http://www.geograph.org.uk/photo/<? echo $id; ?>?mobile=0">geograph.org.uk/photo/<? echo $id; ?></a></p>
 
 <? } else {
 	print $error;

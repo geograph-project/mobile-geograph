@@ -2,6 +2,8 @@
 $page_title = "Results";
 if (empty($canonical)) 
 	$canonical = "http://www.geograph.org.uk/near/".urlencode($_GET['q']).(isset($_GET['filter'])?"?filter=".urlencode(trim($_GET['filter'])):'');
+$full_link = $canonical.(strpos($canonical,'?')?'&':'?')."mobile=0";
+
 include ".header.php"; ?>
 
 <div class="content">

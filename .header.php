@@ -63,5 +63,5 @@ table {
 <body>
 <div class="header">
 <a target="_top" href="http://m.geograph.org.uk/"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="50"></a>
-- <a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?redir=false":$full_link; ?>">View Desktop Site</a>
+- <a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?mobile=0":$full_link; ?>">View Desktop Site</a>
 </div>
