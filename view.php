@@ -64,7 +64,7 @@ licensed for <a href="/reuse.php?id=<? echo $id; ?>">reuse</a> under this <a rel
 	<a title="Share this photo via Flipboard" href="https://share.flipboard.com/bookmarklet/popout?v=2&amp;title=<? echo urlencode($row->title); ?>+by+<? echo urlencode($row->realname); ?>&amp;url=http://www.geograph.org.uk/photo/<? echo $id; ?>" onclick="window.open(this.href,'share','width=500;height=400'); return false;"><img alt="Flipboard" src="http://s1.geograph.org.uk/img/flipboard_16.png" width="16" height="16" style="vertical-align:middle"></a>
 	<a title="Send an this via email/e-card" href="/ecard.php?image=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/email_16.png" width="16" height="16" style="vertical-align:middle"></a> ·
 
-	<img src="http://s1.geograph.org.uk/img/download_16.png" width="16" height="16" style="vertical-align:middle"> <b><a href="/reuse.php?id=<? echo $id; ?>">Download Image</a></b> ·
+	<a href="/reuse.php?id=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/download_16.png" width="16" height="16" style="vertical-align:middle"> <b>Download Image</a></b> ·
 	
 	<? if ($row->original) { ?> 
 		<a href="/more.php?id=<? echo $id; ?>">Larger Sizes</a>

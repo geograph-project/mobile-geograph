@@ -17,10 +17,16 @@ a {
    padding:3px;
 }
 div.header {
-   background-color:#000066
+	background-color:#000066;
+	vertical-align:top;
 }
-div.header a {
+div.header img {
+	vertical-align:top;
+}
+div.header a.a {
 	color:white;
+	padding:5px;
+	background-color:#0033CC;
 }
 div.content {
 	padding:5px;
@@ -31,8 +37,18 @@ div.content a {
 	white-space: nowrap;
 	margin:1px;
 }
+div.footer {
+	background-color:#000066;
+	margin-top:6px;
+	padding:5px;
+}
+div.footer a {
+	color:white;
+	white-space: nowrap;
+	background-color:#0033CC;
+}
 h4 small {
-white-space: nowrap;
+	white-space: nowrap;
 }
 form {
 	background-color:#eee;
@@ -63,5 +79,5 @@ table {
 <body>
 <div class="header">
 <a target="_top" href="http://m.geograph.org.uk/"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="50"></a>
-- <a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?mobile=0":$full_link; ?>">View Desktop Site</a>
+- <a class=a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?mobile=0":$full_link; ?>">View Desktop Site</a>
 </div>
