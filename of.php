@@ -18,6 +18,15 @@ $data = file_get_contents($link);
 $data = preg_replace('/.*<div id="content" >/s','',$data);
 $data = preg_replace("/<div id=\"footer\">.*/ms",'',$data);
 
+$data = preg_replace('/<div style="float:right">.+?<\/div>/ms','',$data);
+
+$data = str_replace('"/browser','"http://www.geograph.org.uk/browser',$data);
+$data = str_replace('"/search.php','"http://www.geograph.org.uk/search.php',$data);
+$data = preg_replace('/\bdo=1/','do=1&displayclass=mobile',$data);
+
+$data = str_replace("'/stuff/record","'http://www.geograph.org.uk/stuff/record",$data);
+
+
 $data = str_replace('http://s1.geograph.org.uk/js/lazy.v2.js','/js/lazy.v2.js',$data);
 $data = str_replace('<script src="/preview.js.php?d=preview" type="text/javascript"></script>','',$data);
 

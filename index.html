@@ -2,6 +2,7 @@
 <head>
 <title>Geograph Britain and Ireland Mobile</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="canonical" href="http://www.geograph.org.uk" />
 <style>
 html,body {
 	padding:0;
@@ -13,10 +14,16 @@ a {
    padding:3px;
 }
 div.header {
-   background-color:#000066
+   background-color:#000066;
+   vertical-align:top;
 }
-div.header a {
+div.header img {
+	vertical-align:top;
+}
+div.header a.a {
 	color:white;
+	padding:5px;
+	background-color:#0033CC;
 }
 div.content {
 	padding:5px;
@@ -28,9 +35,15 @@ div.content a {
 	margin:1px;
 }
 form {
+	padding:5px;
 	background-color:#eee;
 }
-form input {
+form label {
+        float:left;
+        width:40px;
+}
+form input[type=text] {
+	width:96%;
 	margin:2px;
 }
 ul {
@@ -43,8 +56,10 @@ li {
    line-height:1.3em;
    margin-bottom:6px;
 }
-
 </style>
+<link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/ui-darkness/jquery-ui.css" rel="stylesheet"/>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
 <script>
 function getLocation() {
 		$.getScript( "js/jquery.geolocation.js" ).done(function( script, textStatus ) {
@@ -56,30 +71,122 @@ function getLocation() {
 			}});
 		});
 }
+$(function () {
+
+	$( "#loc" ).autocomplete({
+		minLength: 1,
+		search: function(event, ui) {
+			if (false && this.value.search(/^\s*\w{1,2}\d{2,10}\s*$/) > -1) {
+				ok = getWgs84FromGrid(this.value);
+				if (ok) {
+					setLocationBox(this.value,ok);
+				} else {
+					$("#message").html("Does not appear to be a valid grid-reference '"+this.value+"'");
+					$("#placeMessage").show().html("Does not appear to be a valid grid-reference '"+this.value+"'");
+					setTimeout('$("#placeMessage").hide()',3500);
+				}
+				$( "#location" ).autocomplete( "close" );
+				return false;
+			}
+		},
+		source: function( request, response ) {
+
+			var url = "http://www.geograph.org.uk/finder/places.json.php?q="+encodeURIComponent(request.term)+"&callback=?";
+
+			$.ajax({
+				url: url,
+				dataType: 'jsonp',
+				jsonpCallback: 'serveCallback',
+				cache: true,
+				success: function(data) {
+
+					if (!data || !data.items || data.items.length < 1) {
+						$("#message").html("No places found matching '"+request.term+"'");
+						$("#placeMessage").show().html("No places found matching '"+request.term+"'");
+						setTimeout('$("#placeMessage").hide()',3500);
+						return;
+					}
+					var results = [];
+					$.each(data.items, function(i,item){
+						results.push({value:item.gr+' '+item.name,label:item.name,gr:item.gr,title:item.localities});
+					});
+					results.push({value:'',label:'',title:data.query_info});
+					results.push({value:'',label:'',title:data.copyright});
+					response(results);
+				}
+			});
+
+		},
+		select: function(event,ui) {
+			//setLocationBox(ui.item.value,false,false);
+			//return false;
+		}
+	})
+	.data( "autocomplete" )._renderItem = function( ul, item ) {
+		var re=new RegExp('('+$("#loc").val()+')','gi');
+		return $( "<li></li>" )
+			.data( "item.autocomplete", item )
+			.append( "<a>" + item.label.replace(re,'<b>$1</b>') + " <small> " + (item.gr||'') + "<br>" + item.title.replace(re,'<b>$1</b>') + "</small></a>" )
+			.appendTo( ul );
+	};
+
+	$('form').on('submit',function(event) {
+		if ($("#loc").val().search(/^\s*[a-z]{1,2}\d{2,10}\b/i) > -1) {
+			$("#loc").attr('name','gridref');
+		} else {
+			$("#loc").attr('name','latlong');
+		}
+		return true;
+	});
+});
 </script>
 </head>
 <body>
 <div class="header">
-<a target="_top" href="http://www.geograph.org.uk/?mobile=0"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="50"></a>
-- <a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a>
+<a target="_top" href="http://www.geograph.org.uk/?mobile=0"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="40"></a>
+- <a class=a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a>
 </div>
 <p>The Geograph® Britain and Ireland project aims to collect geographically representative photographs and information for every square kilometre of Great Britain and Ireland.</p>
 
 <div class="content">
 
 <form action="http://www.geograph.org.uk/search.php">
-	<div style="float:left;width:48%">
-		<b>Search Images</b> ... Near: <br>
-		<input type="text" name="latlong" value="" placeholder="(optional latitude/longitude)" id="loc" style="width:98%"><br/>
+	<label for="q">For</label>
+	<div style="text-align:center">
+		<b><a href="http://www.geograph.org.uk/finder/">Search Geograph Images</a></b>
+	</div>
+	<input type="text" name="searchtext" size="20" placeholder="(optional keywords)" id="q"><br/>
+
+	<div style="float:right">
 		<input type=button value="(Find My Location)" style="font-size:0.7em" onclick="getLocation()">
 	</div>
-	<div style="float:left;width:48%">
-		Matching Keywords:<br/> <input type="text" name="searchtext" size="20" placeholder="(optional keywords)" style="width:98%"><br/>
+	<label for="loc">Near</label>
+	<input type="text" name="latlong" value="" placeholder="(optional coordinate/placename/postcode)" id="loc"><br/>
+
+	<div style="text-align:right;clear:both">
 		<input type="submit" value="Image search &gt;&gt;" style="font-weight:bold">
 	</div>
-	<br style="clear:both">
 	<input type="hidden" name="do" value="1"><input type="hidden" name="displayclass" value="mobile">
 </form>
+
+<p>
+	<a href="submit.php">Submit</a>
+	<a href="http://www.geograph.org.uk/discuss/">Discussions</a>
+	<a href="http://www.geograph.org.uk/finder/recent.php">Recent Images</a>
+</p>
+<p>
+	<a href="http://www.geograph.org.uk/gallery.php">Gallery</a>
+	<a href="http://www.geograph.org.uk/map/">Map</a>
+	<a href="http://www.geograph.org.uk/content/">Collections</a>
+	<a href="http://www.geograph.org.uk/stuff/daily.php">Featured</a>
+</p>
+
+<p>
+	<span class="nowrap"><a title="Twitter" href="http://twitter.com/geograph_bi">Twitter</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"/></span>,
+	<span class="nowrap"><a title="Facebook" href="http://www.facebook.com/geograph.org.uk">Facebook</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"/></span>
+	<a href="http://www.geograph.org.uk/news.php">Project News</a>
+</p>
+<hr/>
 
 <ul>
 	<li><b><a href="http://www.geograph.org.uk/radar/">Geograph Radar</a></b><br/>
@@ -89,12 +196,7 @@ function getLocation() {
 		Google map with 1km coverage overlay (and GB grid) (with optional dots for each image)<BR>
 		<b>LONG-Press on the map, to view nearby images.</b>
 	</li>
-	<li>
-		<b><a href="submit.php">Submit</a></b>
-		<a href="http://www.geograph.org.uk/discuss/">Discussions</a>
-		<a href="http://www.geograph.org.uk/finder/recent.php">Recent Images</a>
-		<a href="http://www.geograph.org.uk/gallery.php">Gallery</a>
-	</li>
+
 </ul>
 
 Useful External links...
@@ -120,6 +222,5 @@ Some interesting Discussion Threads...
 <hr>
 - <a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a> - <a href="http://www.geograph.org.uk/article/About-Geograph-page">About Geograph</a>
 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 </body>
 </html>

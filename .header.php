@@ -73,11 +73,17 @@ li {
 table {
 	line-height:1.5em;
 }
+div.desc {
+  margin-left:auto;
+  margin-right:auto;
+  width:70%;
+	font-size:0.9em;
+}
 </style>
 
 </head>
 <body>
 <div class="header">
-<a target="_top" href="http://m.geograph.org.uk/"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="50"></a>
+<a target="_top" href="http://m.geograph.org.uk/"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="40"></a>
 - <a class=a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?mobile=0":$full_link; ?>">View Desktop Site</a>
 </div>
