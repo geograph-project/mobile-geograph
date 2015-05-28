@@ -3,7 +3,7 @@
 if (!empty($_GET['id'])) {
 	$id = intval($_GET['id']);
 
-	$url = "http://www.geograph.org.uk/api-facetql.php?where=id=$id&select=*&limit=1";
+	$url = "http://api.geograph.org.uk/api-facetql.php?where=id=$id&select=*&limit=1";
 	$raw = file_get_contents($url); //todo add caching!
 
 	if (strlen($raw) > 10) {
@@ -12,28 +12,28 @@ if (!empty($_GET['id'])) {
 		if (!empty($decoded->rows) && count($decoded->rows) == 1) {
 			$row = $decoded->rows[0];
 			
-			
-			$full_link = "http://www.geograph.org.uk/photo/$id?mobile=0";
+			$page_title = he($row->title)." &copy; ".he($row->realname);
+	
+			if ($row->scenti < 2000000000) { 
+				$canonical = "http://www.geograph.org.uk/photo/$id";
+				$full_link = "http://www.geograph.org.uk/photo/$id?mobile=0";
+			} else {
+				$canonical = "http://www.geograph.ie/photo/$id";
+				$full_link = "http://www.geograph.ie/photo/$id?mobile=0";
+			}
+
+			$ll = sprintf("%.6f,%.6f",rad2deg($row->wgs84_lat),rad2deg($row->wgs84_long));
+
 		} else {
 			 $error = "unable to load image - please try later or try <a href=\"http://www.geograph.org.uk/photo/$id\">http://www.geograph.org.uk/photo/$id</a>"; 
 			 $id = 0;
 		}
-		
+
 	} else {$id = 0; $error = "unable to load image - please try later"; }
 
 } else {
 	$error = "page not found";
 }
-
-$page_title = he($row->title)." &copy; ".he($row->realname);
-
-if ($row->scenti < 2000000000) { 
-	$canonical = "http://www.geograph.org.uk/photo/$id";
-} else {
-	$canonical = "http://www.geograph.ie/photo/$id";
-}
-
-$ll = sprintf("%.6f,%.6f",rad2deg($row->wgs84_lat),rad2deg($row->wgs84_long));
 
 include ".header.php"; 
 
@@ -109,7 +109,8 @@ licensed for <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">r
 
 		<div style="float:right">
 			<iframe src="http://www.geograph.org.uk/map_frame.php?id=<? echo $id; ?>&hash=<? echo $row->hash; ?>"
-			width=256 height=256 frameborder=0></iframe><br/>
+			width=256 height=256 frameborder=0></iframe><br>
+			<? if (strpos($full_link,'org.uk')) { ?><a href="http://www.geograph.org.uk/showmap.php?gridref=<? echo $row->grid_reference; ?>" target="_blank">popup map</a><? } ?>
 			<a href="http://m.nearby.org.uk/gmap.php?dots=1#ll=<? echo $ll; ?>&z=15&t=t">coverage map</a>
 			<a href="http://maps.google.com/maps?daddr=loc:<? echo $ll; ?>">navigate</a>
 		</div>
@@ -188,7 +189,7 @@ licensed for <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">r
 </table>
 
 <hr>
-<p align="center">View full page at <a href="http://www.geograph.org.uk/photo/<? echo $id; ?>?mobile=0">geograph.org.uk/photo/<? echo $id; ?></a></p>
+<p align="center">View full page at <a href="<? echo $full_link; ?>">geograph.org.uk/photo/<? echo $id; ?></a></p>
 
 <? } else {
 	print $error;

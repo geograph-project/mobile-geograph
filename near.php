@@ -1,7 +1,14 @@
 <?php 
+
+if (!function_exists('urlplus')) {
+        function urlplus($string) {
+                return str_replace('%2F','/',str_replace('%3A',':',urlencode($string)));
+        }
+}
+
 $page_title = "Results";
 if (empty($canonical)) 
-	$canonical = "http://www.geograph.org.uk/near/".urlencode($_GET['q']).(isset($_GET['filter'])?"?filter=".urlencode(trim($_GET['filter'])):'');
+	$canonical = "http://www.geograph.org.uk/near/".urlplus($_GET['q']).(isset($_GET['filter'])?"?filter=".urlencode(trim($_GET['filter'])):'');
 $full_link = $canonical.(strpos($canonical,'?')?'&':'?')."mobile=0";
 
 include ".header.php"; ?>
@@ -11,7 +18,7 @@ include ".header.php"; ?>
 
 <?
 
-$link = "http://schools.geograph.org.uk/near/".urlencode($_GET['q']).(isset($_GET['filter'])?"?filter=".urlencode(trim($_GET['filter'])):'');
+$link = "http://schools.geograph.org.uk/near/".urlplus($_GET['q']).(isset($_GET['filter'])?"?filter=".urlencode(trim($_GET['filter'])):'');
 
 $data = file_get_contents($link);
 
@@ -54,3 +61,4 @@ $data = str_replace('<head>','<head><style>#content {width:inherit !important }<
 #$data = 
 
 print $data;
+

@@ -79,11 +79,30 @@ div.desc {
   width:70%;
 	font-size:0.9em;
 }
+div.searchbtn {
+	float:right;
+	width:2em;
+}
+div.searchbtn a {
+	color:white;
+}
+form#searchform {
+	display:block;
+	text-align:right;
+}
+form#searchform input[type=text] {
+	width:50%;
+}
 </style>
 
 </head>
 <body>
 <div class="header">
+<div class="searchbtn"><a href="#" onclick="document.getElementById('searchform').style.display='';this.style.display='none';return false">&#128269;</a></div>
 <a target="_top" href="http://m.geograph.org.uk/"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="40"></a>
 - <a class=a href="<? echo empty($full_link)?"http://www.geograph.org.uk/?mobile=0":$full_link; ?>">View Desktop Site</a>
 </div>
+<form action="/of/" id="searchform" style="display:none" onsubmit="location.href='/of/'+encodeURIComponent(this.q.value);return false">
+	Search:<input type="text" name="q" placeholder="keyword search"><input type=submit value="go">
+</form>
+
