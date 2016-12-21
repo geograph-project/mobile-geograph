@@ -2,12 +2,13 @@
 <head>
 <title>Geograph Britain and Ireland Mobile</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="canonical" href="http://www.geograph.org.uk" />
+
 <style>
 html,body {
 	padding:0;
 	margin:0;
 	font-family:Georgia, sans-serif;
+        background: #e4e4fc;
 }
 a {
    text-decoration:none;
@@ -58,7 +59,7 @@ li {
 }
 </style>
 <link type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/themes/ui-darkness/jquery-ui.css" rel="stylesheet"/>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
 <script>
 $.ajaxSetup({
@@ -146,10 +147,9 @@ $(function () {
 </head>
 <body>
 <div class="header">
-<a target="_top" href="http://www.geograph.org.uk/?mobile=0"><img src="http://s1.geograph.org.uk/templates/basic/img/logo.gif" height="40"></a>
+<a target="_top" href="http://www.geograph.org.uk/?mobile=0"><img src="/img/logo.gif" height="40"></a>
 - <a class=a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a>
 </div>
-<p>The Geograph® Britain and Ireland project aims to collect geographically representative photographs and information for every square kilometre of Great Britain and Ireland.</p>
 
 <div class="content">
 
@@ -185,14 +185,16 @@ $(function () {
 </p>
 
 <p>
-	<span class="nowrap"><a title="Twitter" href="http://twitter.com/geograph_bi">Twitter</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"/></span>,
-	<span class="nowrap"><a title="Facebook" href="http://www.facebook.com/geograph.org.uk">Facebook</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"/></span>
+	<span class="nowrap"><a title="Twitter" href="http://twitter.com/geograph_bi">Twitter</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="/img/external.png" width="10" height="10"/></span>,
+	<span class="nowrap"><a title="Facebook" href="http://www.facebook.com/geograph.org.uk">Facebook</a><img style="padding-left:2px;" alt="External link" title="External link - shift click to open in new window" src="/img/external.png" width="10" height="10"/></span>
 	<a href="http://www.geograph.org.uk/news.php">Project News</a>
 </p>
+
+
 <hr/>
 
 <ul>
-	<li><b><a href="http://www.geograph.org.uk/radar/">Geograph Radar</a></b><br/>
+	<li><b><a href="https://m.geograph.org.uk/radar/">Geograph Radar</a></b><br/>
 		Get a mini-checksheet for your current location (optionally personalized)
 	</li>
 	<li><b><a href="http://m.nearby.org.uk/gmap.php">Mobile Coverage Map</a></b> <b><a href="http://m.nearby.org.uk/gmap.php?dots=1">- With Dots</a></b><br/>
@@ -202,16 +204,27 @@ $(function () {
 
 </ul>
 
+<a href="https://docs.google.com/forms/d/1BGhmOVxiq3DaWRWCwxCP3ej0DP1iM_Ze-v0B972Fz3c/viewform" target="_blank" style="width:100%;text-align:center;display:block;">Send Feedback</a>
+<br>
+
+
 Useful External links...
 <ul>
-	<li><b><a href="http://m.nearby.org.uk/">nearby.org.uk Mobile Location Links</a></b><img style="padding-left:2px;" title="External link" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"><br/>
+       <li>Mobile Apps for viewing Geograph Images:<br>
+	<b><a href="http://simbro.github.io/Geograph/build/production/Geograph/" title="Geograph Web-App">Web-App</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10">
+		(<a href="https://github.com/simbro/Geograph">Github</a>), 
+
+        <b><a href="https://appsto.re/gb/4DzKbb.i" title="iOS Geograph App">iOS</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10">
+       </li>
+
+	<li><b><a href="http://m.nearby.org.uk/">nearby.org.uk Mobile Location Links</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"><br/>
 		Links specific to your current location
 	</li>
 
-	<li><b><a href="http://openspace.nearby.org.uk/mobile/mobile.htm">WTP Mobile</a></b><img style="padding-left:2px;" title="External link" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"><br/>
+	<li><b><a href="http://openspace.nearby.org.uk/mobile/mobile.htm">WTP Mobile</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"><br/>
 		Website showing OS Maps for mobile users - Great Britain only
 	</li>
-	<li><b><a href="http://m.nearby.org.uk/map.php">GB Trigpoints Map</a></b><img style="padding-left:2px;" title="External link" src="http://s1.geograph.org.uk/img/external.png" width="10" height="10"></li>
+	<li><b><a href="http://m.nearby.org.uk/map.php">GB Trigpoints Map</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"></li>
 </ul>
 
 Some interesting Discussion Threads...
@@ -224,6 +237,8 @@ Some interesting Discussion Threads...
 
 <hr>
 - <a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a> - <a href="http://www.geograph.org.uk/article/About-Geograph-page">About Geograph</a>
+- <a href="https://github.com/barryhunter/mobile-geograph/">View on Github</a>
 
+<!--script async="" defer="" src="//survey.g.doubleclick.net/async_survey?site=lqo5zjzqxdj4o"></script-->
 </body>
 </html>

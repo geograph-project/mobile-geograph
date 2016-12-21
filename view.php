@@ -35,6 +35,7 @@ if (!empty($_GET['id'])) {
 	$error = "page not found";
 }
 
+
 include ".header.php"; 
 
 ?>

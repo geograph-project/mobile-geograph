@@ -14,7 +14,7 @@ $full_link = $canonical.(strpos($canonical,'?')?'&':'?')."mobile=0";
 include ".header.php"; ?>
 
 <div class="content">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js" type="text/javascript"></script>
 
 <?
 
@@ -34,7 +34,7 @@ $data = preg_replace('/\bdo=1/','do=1&displayclass=mobile',$data);
 $data = str_replace("'/stuff/record","'http://www.geograph.org.uk/stuff/record",$data);
 
 
-$data = str_replace('http://s1.geograph.org.uk/js/lazy.v2.js','/js/lazy.v2.js',$data);
+$data = str_replace('http://s1.geograph.org.uk/js/lazy.v4.js','/js/lazy.v4.js',$data);
 $data = str_replace('<script src="/preview.js.php?d=preview" type="text/javascript"></script>','',$data);
 
 print $data;

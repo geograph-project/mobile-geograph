@@ -1,4 +1,7 @@
-<html>
+<?
+//https://support.google.com/webmasters/answer/6211428
+//header("Cache-Control: no-transform");
+?><html>
 <head>
 <title><? echo empty($page_title)?'':"$page_title :: "; ?>Geograph Britain and Ireland</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
