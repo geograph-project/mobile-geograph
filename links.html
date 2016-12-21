@@ -8,7 +8,7 @@ html,body {
 	padding:0;
 	margin:0;
 	font-family:Georgia, sans-serif;
-        background: #e4e4fc;
+	background: #e4e4fc;
 }
 a {
    text-decoration:none;
@@ -95,7 +95,7 @@ $(function () {
 		},
 		source: function( request, response ) {
 
-			var url = "http://www.geograph.org.uk/finder/places.json.php?q="+encodeURIComponent(request.term)+"&callback=?";
+			var url = "/places.json.php?q="+encodeURIComponent(request.term);
 
 			$.ajax({
 				url: url,
@@ -150,6 +150,7 @@ $(function () {
 <a target="_top" href="http://www.geograph.org.uk/?mobile=0"><img src="/img/logo.gif" height="40"></a>
 - <a class=a href="http://www.geograph.org.uk/?mobile=0">View Desktop Site</a>
 </div>
+<p>The Geograph<sup>&reg;</sup> Britain and Ireland project aims to collect geographically representative photographs and information for every square kilometre of Great Britain and Ireland.</p>
 
 <div class="content">
 
@@ -197,7 +198,7 @@ $(function () {
 	<li><b><a href="https://m.geograph.org.uk/radar/">Geograph Radar</a></b><br/>
 		Get a mini-checksheet for your current location (optionally personalized)
 	</li>
-	<li><b><a href="http://m.nearby.org.uk/gmap.php">Mobile Coverage Map</a></b> <b><a href="http://m.nearby.org.uk/gmap.php?dots=1">- With Dots</a></b><br/>
+	<li><b><a href="https://m.nearby.org.uk/gmap.php">Mobile Coverage Map</a></b> <b><a href="https://m.nearby.org.uk/gmap.php?dots=1">- With Dots</a></b><br/>
 		Google map with 1km coverage overlay (and GB grid) (with optional dots for each image)<BR>
 		<b>LONG-Press on the map, to view nearby images.</b>
 	</li>
@@ -217,14 +218,14 @@ Useful External links...
         <b><a href="https://appsto.re/gb/4DzKbb.i" title="iOS Geograph App">iOS</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10">
        </li>
 
-	<li><b><a href="http://m.nearby.org.uk/">nearby.org.uk Mobile Location Links</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"><br/>
+	<li><b><a href="https://m.nearby.org.uk/">nearby.org.uk Mobile Location Links</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"><br/>
 		Links specific to your current location
 	</li>
 
 	<li><b><a href="http://openspace.nearby.org.uk/mobile/mobile.htm">WTP Mobile</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"><br/>
 		Website showing OS Maps for mobile users - Great Britain only
 	</li>
-	<li><b><a href="http://m.nearby.org.uk/map.php">GB Trigpoints Map</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"></li>
+	<li><b><a href="https://m.nearby.org.uk/map.php">GB Trigpoints Map</a></b><img style="padding-left:2px;" title="External link" src="/img/external.png" width="10" height="10"></li>
 </ul>
 
 Some interesting Discussion Threads...
