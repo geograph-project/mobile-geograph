@@ -84,12 +84,12 @@ include ".header.php";
 	
 	
 	
-	<div align="center" class="ccmessage"><a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons Licence [Some Rights Reserved]" src="http://creativecommons.org/images/public/somerights20.gif"></a> &nbsp; © Copyright <a title="View profile" href="/profile/<? echo $row->user_id; ?>" xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" rel="cc:attributionURL dct:creator"><? echo he($row->realname); ?></a> and
+	<div align="center" class="ccmessage"><a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/"><img alt="Creative Commons Licence [Some Rights Reserved]" src="http://creativecommons.org/images/public/somerights20.gif"></a> &nbsp; Â© Copyright <a title="View profile" href="/profile/<? echo $row->user_id; ?>" xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName" rel="cc:attributionURL dct:creator"><? echo he($row->realname); ?></a> and
 licensed for <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">reuse</a> under this <a rel="license" href="http://creativecommons.org/licenses/by-sa/2.0/" class="nowrap" about="<? echo $fullurl; ?>" title="Creative Commons Attribution-Share Alike 2.0 Licence">Creative Commons Licence</a>.</div>
 
 
 <div  align="center" style="margin:10px;padding:5px;border-bottom:1px solid gray;font-size:0.8em;">
-	· <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">Find out <b>How to reuse</b> this image</a> ·
+	Â· <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">Find out <b>How to reuse</b> this image</a> Â·
 
 	Share: 
 	<a title="Share this photo via Twitter" href="https://twitter.com/intent/tweet?text=<? echo urlencode($row->title); ?>+by+<? echo urlencode($row->realname); ?>&amp;url=http://www.geograph.org.uk/photo/<? echo $id; ?>" onclick="window.open(this.href,'share','width=500;height=400'); return false;"><img alt="Twitter" src="http://s1.geograph.org.uk/img/twitter_16.png" width="16" height="16" style="vertical-align:middle"></a>
@@ -97,9 +97,9 @@ licensed for <a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>">r
 	<a title="Share this photo via Google Plus" href="https://plus.google.com/share?url=http://www.geograph.org.uk/photo/<? echo $id; ?>&amp;t=<? echo urlencode($row->title); ?>+by+<? echo urlencode($row->realname); ?>" onclick="window.open(this.href,'share','width=500;height=400'); return false;"><img alt="Google Plus" src="http://s1.geograph.org.uk/img/googleplus_16.png" width="16" height="16" style="vertical-align:middle"></a>
 	<a title="Share this photo via Pinterest" href="http://www.pinterest.com/pin/create/button/?media=<? echo $fullurl; ?>&amp;url=http://www.geograph.org.uk/photo/<? echo $id; ?>&amp;description=<? echo urlencode($row->title); ?>+by+<? echo urlencode($row->realname); ?>" onclick="window.open(this.href,'share','width=500;height=400'); return false;"><img alt="Pinterest" src="http://s1.geograph.org.uk/img/pinterest_16.png" width="16" height="16" style="vertical-align:middle"></a>
 	<a title="Share this photo via Flipboard" href="https://share.flipboard.com/bookmarklet/popout?v=2&amp;title=<? echo urlencode($row->title); ?>+by+<? echo urlencode($row->realname); ?>&amp;url=http://www.geograph.org.uk/photo/<? echo $id; ?>" onclick="window.open(this.href,'share','width=500;height=400'); return false;"><img alt="Flipboard" src="http://s1.geograph.org.uk/img/flipboard_16.png" width="16" height="16" style="vertical-align:middle"></a>
-	<a title="Send an this via email/e-card" href="http://www.geograph.org.uk/ecard.php?image=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/email_16.png" width="16" height="16" style="vertical-align:middle"></a> ·
+	<a title="Send an this via email/e-card" href="http://www.geograph.org.uk/ecard.php?image=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/email_16.png" width="16" height="16" style="vertical-align:middle"></a> Â·
 
-	<a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/download_16.png" width="16" height="16" style="vertical-align:middle"> <b>Download Image</a></b> ·
+	<a href="http://www.geograph.org.uk/reuse.php?id=<? echo $id; ?>"><img src="http://s1.geograph.org.uk/img/download_16.png" width="16" height="16" style="vertical-align:middle"> <b>Download Image</a></b> Â·
 	
 	<? if ($row->original) { ?> 
 		<a href="http://www.geograph.org.uk/more.php?id=<? echo $id; ?>">Larger Sizes</a>
@@ -212,10 +212,10 @@ function getGeographUrl($gridimage_id,$hash,$size = 'small') {
 		$yz=sprintf("%02d", floor($gridimage_id/1000000));
 		$fullpath="/geophotos/$yz/$ab/$cd/{$abcdef}_{$hash}";
 	}
-	$server =  "http://s".($gridimage_id%4).".geograph.org.uk";
+	$server =  "https://s".($gridimage_id%4).".geograph.org.uk";
 
 	switch($size) {
-		case 'full': return "http://s0.geograph.org.uk$fullpath.jpg"; break;
+		case 'full': return "https://s0.geograph.org.uk$fullpath.jpg"; break;
 		case 'med': return "$server{$fullpath}_213x160.jpg"; break;
 		case 'small':
 		default: return "$server{$fullpath}_120x120.jpg";
